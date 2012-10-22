@@ -15,7 +15,7 @@ public class HelloWorld extends HttpServlet {
             throws ServletException, IOException {
 				DateFormat disTime = new SimpleDateFormat("hh:mm:ss");
 				String newTime = disTime.format(new Date());
-				resp.getWriter().print("<h1>Hello from Keith Kelly, 09104844<h1>" + newTime);
+				resp.getWriter().print("<h1>Hello from Keith Kelly, 09104844</h1>" + "\n" + "<h2> Current Time on the Heroku servers is: " + newTime +"</h2>");
 			}
 
     public static void main(String[] args) throws Exception{
