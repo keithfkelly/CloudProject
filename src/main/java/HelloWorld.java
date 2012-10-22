@@ -9,7 +9,7 @@ public class HelloWorld extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        resp.getWriter().print("<h1>Hello from Keith Kelly, 09104844<h1>/n");
+        resp.getWriter().print("<h1>Hello from Keith Kelly, 09104844<h1>");
     }
 
     public static void main(String[] args) throws Exception{
