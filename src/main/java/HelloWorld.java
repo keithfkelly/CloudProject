@@ -12,9 +12,9 @@ public class HelloWorld extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-				Test myT = new Test("woop");
-				String s = myT.returnString();
-				resp.getWriter().print(s);
+				DateFormat disTime = new SimpleDateFormat("hh:mm:ss");
+				String newTime = disTime.format(new Date());
+				resp.getWriter().print("<h1>Hello from Keith Kelly, 09104844</h1>" + "\n" + "<h2> Current Time on the Heroku servers is: " +newTime+"</h2>");
 			}
 
     public static void main(String[] args) throws Exception{
