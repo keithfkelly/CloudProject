@@ -2,7 +2,6 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import org.eclipse.jetty.server.Server;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,9 +12,9 @@ public class HelloWorld extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-				DateFormat disTime = new SimpleDateFormat("hh:mm:ss");
-				String newTime = disTime.format(new Date());
-				resp.getWriter().print("<h1>Hello from Keith Kelly, 09104844</h1>" + "\n" + "<h2> Current Time on the Heroku servers is: " + newTime +"</h2>");
+				Test myT = new Test("woop");
+				String s = myT.returnString();
+				resp.getWriter().print(s);
 			}
 
     public static void main(String[] args) throws Exception{
