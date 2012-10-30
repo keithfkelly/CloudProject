@@ -16,7 +16,7 @@ public class Test {
 	
 	public void getXML(){
 		try{
-			File XMLResult = new File("http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML");
+			File XMLResult = new File("getAllStationsXML.xml");
 			DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuild = dBF.newDocumentBuilder();
 			Document results = dBuild.parse(XMLResult);
