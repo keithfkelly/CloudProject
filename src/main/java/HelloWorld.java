@@ -13,6 +13,7 @@ public class HelloWorld extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 				Test myT = new Test();
+				myT.getXML();
 				String s = myT.returnString();
 				resp.getWriter().print(s);
 			}
