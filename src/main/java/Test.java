@@ -4,11 +4,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import java.net.URI;
+import java.net.URL;
 import java.io.File;
 
 public class Test {
-	
-	StringBuffer ret;
+	StringBuffer ret = new StringBuffer();
+
 
 	public Test(){
 		
@@ -16,10 +18,10 @@ public class Test {
 	
 	public void getXML(){
 		try{
-			File XMLResult = new File("getAllStationsXML.xml");
+			URI XMLResult = new URI("http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML_WithStationType?StationType=D");
 			DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuild = dBF.newDocumentBuilder();
-			Document results = dBuild.parse(XMLResult);
+			Document results = dBuild.parse(XMLResult.toString());
 			results.getDocumentElement().normalize();
 			
 			NodeList stationList = results.getElementsByTagName("objStation");
@@ -27,7 +29,11 @@ public class Test {
 				Node stationNode = stationList.item(i);
 				if(stationNode.getNodeType()== Node.ELEMENT_NODE){
 					Element stationElem = (Element) stationNode;
-					ret.append("\n" + " Station Name: " + getTagValue("StationDesc", stationElem));
+					String stationName = getTagValue("StationDesc", stationElem).toString();
+					if(stationName.equals("Malahide")){
+						ret.append("\n" + " Station Name: " + getTagValue("StationDesc", stationElem));
+						ret.append("\n" + " Station Code: " + getTagValue("StationId", stationElem) +"\n");
+					}
 					
 				}
 			}
@@ -47,5 +53,8 @@ public class Test {
 	
 	
 	
-	public String returnString(){return this.ret.toString();}
+	public String returnString(){
+		String returnS = this.ret.toString();
+		return returnS; 
+	}
 }
