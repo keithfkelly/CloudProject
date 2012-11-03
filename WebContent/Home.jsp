@@ -12,7 +12,7 @@
 <body>
 <div id="header">
 	<div id="logo">
-		<h1>TrainTimer</a></h1>
+		<h1>TrainTimer</h1>
 		<h2>Getting You There!</h2>
 	</div>
 	<div id="menu">
@@ -25,7 +25,8 @@
 </div>
 <div id="content">
 	<div id="colOne">
-	<form action="TrainServlet">			
+	<form action="TrainServlet">
+	<br />			
 			 <B>Please Select a Station: </B><br/>
 			 <br />
 			 <select name="StationCode">
@@ -63,6 +64,10 @@
 				<option value="KCOOL">Kilcoole</option>
 			</select>
 			<br />
+			<br/>
+			<b>Please Enter your Phone Number:<br/>
+			</b><br/>
+			<input type="text" name="phone">
 			<br />
 			<input type="submit" value="submit">
 								

@@ -5,11 +5,11 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.net.URI;
-import java.net.URL;
-import java.io.File;
+import java.util.ArrayList;
 
 public class Logic {
 	StringBuffer ret = new StringBuffer();
+	ArrayList<Station> stations = new ArrayList<Station>();
 
 
 	public Logic(){
@@ -17,33 +17,43 @@ public class Logic {
 	}
 	
 	public void getXML(String station){
+	
 		try{
-			URI XMLResult = new URI("http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML_WithNumMins?StationCode="+station+"&NumMins=30");
+			URI stationXML = new URI("http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML_WithNumMins?StationCode="+station+"&NumMins=30");
 			DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuild = dBF.newDocumentBuilder();
-			Document results = dBuild.parse(XMLResult.toString());
+			Document results = dBuild.parse(stationXML.toString());
 			results.getDocumentElement().normalize();
+			 
 			
 			NodeList stationList = results.getElementsByTagName("objStationData");
-			for(int i=0;i<1/*stationList.getLength()+1*/;i++){
+			for(int i=0;i<stationList.getLength();i++){
 				Node stationNode = stationList.item(i);
 				if(stationNode.getNodeType()== Node.ELEMENT_NODE){
 					Element stationElem = (Element) stationNode;
-						ret.append("\n" + "Due in: " + getTagValue("Duein", stationElem)+"<br/>");
-						ret.append("\n" + "Status :" + getTagValue("Lastlocation", stationElem)+"<br/>");
-						ret.append("\n" + " Direction : " + getTagValue("Direction", stationElem)+"<br/>");
+					String stat = getTagValue("Stationfullname", stationElem); 
+					String due = getTagValue("Duein", stationElem);
+					String des = getTagValue("Destination", stationElem);
+					String status = getTagValue("Status", stationElem);
+					String lastLoc = getTagValue("Lastlocation", stationElem);
+					String dir = getTagValue("Direction", stationElem);
+					
+					Station newStation = new Station();
+					newStation.setStation(stat, due, des, status, lastLoc, dir);
+					stations.add(newStation);
 					}
 					
 			}
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	private static String getTagValue(String sTag, Element eElement) {
 		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
         Node nValue = (Node) nlList.item(0);
+        if(nValue==null){return "No Status";}
 		return nValue.getNodeValue();
 	}
 	  
@@ -51,8 +61,7 @@ public class Logic {
 	
 	
 	
-	public String returnString(){
-		String returnS = this.ret.toString();
-		return returnS; 
+	public ArrayList<Station> returnStations(){
+		return stations; 
 	}
 }

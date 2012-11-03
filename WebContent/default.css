@@ -9,7 +9,7 @@ body {
 	padding: 0;
 	background: #B2D22A url(images/img1.gif) repeat-x;
 	font: normal small "Trebuchet MS", Arial, Helvetica, sans-serif;
-	color: #688000;
+	color: white;
 }
 
 form {
@@ -69,6 +69,7 @@ p, ul, ol, blockquote {
 #menu {
 	float: right;
 	padding: 20px 70px 0 0;
+	color:#688000;
 }
 
 #menu ul {

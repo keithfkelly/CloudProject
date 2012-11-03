@@ -11,7 +11,7 @@
 <body>
 <div id="header">
 	<div id="logo">
-		<h1>TrainTimer</a></h1>
+		<h1>TrainTimer</h1>
 		<h2>Getting You There!</h2>
 	</div>
 	<div id="menu">
@@ -24,8 +24,26 @@
 </div>
 <div id="content">
 	<div id="colOne">
-		${results}
-		
+	<table border="1" style="text-align:center">
+		<tr>
+		<th />
+		<th>Information</th>
+		<th>Due in</th>
+		</tr>
+		<c:forEach items="${results}" var="train">
+			<tr>
+			<td><img src="images/train.png" width="30" height="30"/></td>
+			<td width="70%">
+			Dart traveling <c:out value="${train.getDir()}"/>
+			going to <c:out value="${train.getDes()}"/>
+			has <c:out value="${train.getLastLoc()}"/>. 
+			<br /></td>
+			<td>
+			<c:out value="${train.getDue()}"/> Minutes<br /><br />
+			</td>
+			</tr>			
+		</c:forEach>
+	</table>
 	</div>
 	
 </div>
