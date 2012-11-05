@@ -39,8 +39,8 @@ public class TrainTimer extends HttpServlet {
 				Integer s2 = Integer.parseInt(sta2.getDue());
 				return s1.compareTo(s2);}});
 				
-			Comm();
-			phone.delete(0, phone.length());
+			Comm(); //Do the Communication
+			phone.delete(0, phone.length()); //Clears phone number
 		//Forward the result to a Results JSP page
 		request.setAttribute("results", trains); 
 		request.getRequestDispatcher("/Result.jsp").forward(request, response);
@@ -72,12 +72,12 @@ public class TrainTimer extends HttpServlet {
 	}
 	
 	public void CallSend() throws UnsupportedEncodingException{ 
-		//Generate SMS Body
-		data.append("Train Timer for Station  "+trains.get(1).getSta()+"\n"+"<pause length=\"2\"/>");
+		//Generate Call Body
+		data.append("Train Timer for Station  "+trains.get(1).getSta()+"</Say>\n");
 		for(int i=0;i<trains.size();i++){
-				data.append("<pause length=\"1\"/>"+(i+1)+". Train for "+trains.get(i).getDes()+" due in "+trains.get(i).getDue()+" Mins\n" +"<pause length=\"2\"/>");	
+				data.append("<pause length=\"1\"/><Say>"+(i+1)+". Train for "+trains.get(i).getDes()+" due in "+trains.get(i).getDue()+" Mins</Say>\n");	
 		}
-		data.append("Thank you for using Train Timer");
+		data.append("<pause length=\"1\"/><Say>Thank you for using Train Timer");
 		
 		SendCall call = new SendCall();
 		call.doSend(phone.toString(), data.toString());

@@ -19,12 +19,12 @@ public class SendCall{
 		Account keithTwilio = trainClient.getAccount();
 		CallFactory keithCall = keithTwilio.getCallFactory();
 		String say = data;
-		String twiml = "<Response><Say voice=\"women\">" + say + "</Say></Response>";
+		String twiml = "<Response>\n<Say>" + say + "</Say></Response>"; //Twiml Markup for generating Calls
 		
 		Map<String,String> callDetails = new HashMap<String,String>();
 		callDetails.put("From", "702-505-4171");
 		callDetails.put("To", to);
-		callDetails.put("Url", "http://twimlets.com/echo?Twiml="+ URLEncoder.encode(twiml, "UTF-8"));
+		callDetails.put("Url", "http://twimlets.com/echo?Twiml="+ URLEncoder.encode(twiml, "UTF-8")); //Using the Echo Twimlet
 		
 		try{
 			Call trainAlert = keithCall.create(callDetails);

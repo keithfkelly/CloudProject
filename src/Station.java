@@ -1,4 +1,4 @@
-
+//Station class for Data access and storage in an array List
 public class Station {
 	
 	String due;
