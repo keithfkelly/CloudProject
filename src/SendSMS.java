@@ -3,11 +3,9 @@ import java.util.Map;
  
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
-import com.twilio.sdk.TwilioRestResponse;
 import com.twilio.sdk.resource.factory.SmsFactory;
 import com.twilio.sdk.resource.instance.Account;
 import com.twilio.sdk.resource.instance.Sms;
-import com.twilio.sdk.resource.factory.CallFactory;
 
 public class SendSMS {
 	
@@ -18,7 +16,6 @@ public class SendSMS {
 		TwilioRestClient trainClient =new TwilioRestClient(ACCOUNTSID, AUTHTOKEN);
 		Account keithTwilio = trainClient.getAccount();
 		SmsFactory keithSMS = keithTwilio.getSmsFactory();
-		CallFactory keithCall = keithTwilio.getCallFactory();
 		
 		Map<String,String> smsDetails = new HashMap<String,String>();
 		smsDetails.put("From", "702-505-4171");

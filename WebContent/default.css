@@ -108,6 +108,8 @@ p, ul, ol, blockquote {
 
 /* Column One */
 
+#headings{color: white;}
+
 #colOne {
 	margin: 0 15px;
 	background: url(images/img5.gif) repeat-x;
